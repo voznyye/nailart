@@ -19,7 +19,7 @@ import sys
 from typing import List, Tuple
 import numpy as np
 from numpy.typing import NDArray
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.backends.backend_pdf import PdfPages
@@ -705,10 +705,10 @@ def render_drawing_simulation(instructions, nails, canvas_size, filename, dpi):
     ld = ImageDraw.Draw(layer)
     
     # Thread appearance settings
-    thread_color = (25, 25, 25)  # Dark gray/black thread
-    base_alpha = 15  # Alpha per line pass (0-255) - adjusted for better visibility
-    line_width = max(2, int(LINE_WEIGHT * (img_px / TARGET_SIZE) / 5))
-    
+    thread_color = (0, 0, 0)  # Pure black thread for crisp simulation
+    base_alpha = 22  # Alpha per line pass (0-255) - increased for thin threads
+    line_width = max(1, int(LINE_WEIGHT * (img_px / TARGET_SIZE) / 12))  # Thinner lines for sharper look
+
     print(f"Rendering {len(instructions)} thread segments...")
     
     for idx, (a, b) in enumerate(instructions):
@@ -730,7 +730,10 @@ def render_drawing_simulation(instructions, nails, canvas_size, filename, dpi):
     
     # Final composite
     canvas = Image.alpha_composite(canvas, layer)
-    
+
+    # Apply slight sharpening to emulate crisp appearance of thin black thread
+    canvas = canvas.filter(ImageFilter.UnsharpMask(radius=1, percent=150, threshold=3))
+
     # Draw nails as small dark circles
     draw_final = ImageDraw.Draw(canvas)
     nail_radius = max(2, int(4 * (img_px / TARGET_SIZE)))
