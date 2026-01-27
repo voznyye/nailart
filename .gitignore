@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Output files (generated)
+nails_scheme.pdf
+nails_scheme.png
+instructions.csv
+instructions.txt
+drawing_simulation.pdf
+drawing_simulation.png
+
+# Test files
+test_*.png
+output/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
