@@ -66,7 +66,7 @@ SCHEME_DPI = 300  # DPI for printable output
 EXPORT_FORMAT = "csv"  # "csv" or "txt" for instructions
 
 # Nail numbering appearance
-NAIL_NUMBER_FONT_SIZE_BASE = 8  # Base font size for nail numbers
+NAIL_NUMBER_FONT_SIZE_BASE = 6  # Base font size for nail numbers
 NAIL_NUMBER_OFFSET_MM = 8  # Distance of numbers from nails in mm
 HIGHLIGHT_EVERY_NTH_NAIL = 10  # Highlight every Nth nail with bold marker
 

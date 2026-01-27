@@ -33,3 +33,7 @@ output/
 # OS
 .DS_Store
 Thumbs.db
+
+*png
+*jpg
+*pdf
