@@ -37,7 +37,7 @@ A3_WIDTH_IN = 11.69  # A3 width in inches
 A3_HEIGHT_IN = 16.54  # A3 height in inches
 
 # Working area configuration (with margins)
-MARGIN_MM = 35  # Margin from paper edge in millimeters
+MARGIN_MM = 15  # Margin from paper edge in millimeters
 WORKING_AREA_MM = min(A3_WIDTH_MM, A3_HEIGHT_MM) - 2 * MARGIN_MM  # 227mm square
 CIRCLE_RADIUS_MM = WORKING_AREA_MM / 2  # 113.5mm radius
 
