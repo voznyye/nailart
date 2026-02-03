@@ -1,94 +1,94 @@
-# 🚀 Быстрый старт - String Art Generator
+# 🚀 Quick Start - String Art Generator
 
-## За 5 минут к первому результату!
+## Your first result in 5 minutes!
 
-### Шаг 1: Установка (1 минута)
+### Step 1: Installation (1 minute)
 
 ```bash
-# Перейти в папку проекта
+# Navigate to project folder
 cd art
 
-# Создать виртуальное окружение (если не создано)
+# Create virtual environment (if not created)
 python3 -m venv .venv
 
-# Активировать окружение
-source .venv/bin/activate  # на macOS/Linux
-# или
-.venv\Scripts\activate  # на Windows
+# Activate environment
+source .venv/bin/activate  # on macOS/Linux
+# or
+.venv\Scripts\activate  # on Windows
 
-# Установить зависимости
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### Шаг 2: Подготовить изображение (1 минута)
+### Step 2: Prepare an Image (1 minute)
 
-Найдите или создайте изображение:
-- **Формат:** JPG или PNG
-- **Размер:** минимум 500×500 px
-- **Содержание:** портрет, логотип, простой объект
-- **Контраст:** чем выше, тем лучше
+Find or create an image:
+- **Format:** JPG or PNG
+- **Size:** minimum 500×500 px
+- **Content:** portrait, logo, simple object
+- **Contrast:** higher is better
 
-💡 **Совет:** Используйте чёрно-белое изображение с чётким контуром
+💡 **Tip:** Use black and white image with clear contours
 
-### Шаг 3: Запустить генератор (2-5 минут выполнения)
+### Step 3: Run the Generator (2-5 minutes execution)
 
 ```bash
 python string_art.py your_image.png
 ```
 
-### Шаг 4: Получить результаты
+### Step 4: Get Results
 
-После завершения вы получите:
+After completion you will receive:
 
 1. **nails_scheme.pdf** 📋
-   - Схема для размещения 180 гвоздей
-   - Готова к печати на A3
-   - С номерами и направляющими
+   - Scheme for placing 180 nails
+   - Ready to print on A3
+   - With numbers and guides
 
 2. **instructions.csv** 📊
-   - 3500 шагов инструкций
-   - Длина каждого сегмента
-   - Общая длина нити: ~30-100 метров
+   - 3500 steps of instructions
+   - Length of each segment
+   - Total thread length: ~30-100 meters
 
 3. **drawing_simulation.png** 🖼️
-   - Как будет выглядеть результат
-   - Реалистичная визуализация
+   - How the result will look
+   - Realistic visualization
 
-## Что дальше?
+## What's Next?
 
-### Создать физическую работу
+### Create Physical Artwork
 
-1. Распечатайте `nails_scheme.pdf` на A3
-2. Купите материалы:
-   - Деревянная доска A3+ размера
-   - 180 маленьких гвоздей (15-20 мм)
-   - Чёрная нить (смотрите длину в CSV)
-   - Молоток
+1. Print `nails_scheme.pdf` on A3
+2. Buy materials:
+   - Wooden board A3+ size
+   - 180 small nails (15-20 mm)
+   - Black thread (see length in CSV)
+   - Hammer
 
-3. Следуйте инструкциям из CSV
-4. Наслаждайтесь результатом! ��
+3. Follow instructions from CSV
+4. Enjoy the result! 🎨
 
-### Настроить параметры
+### Adjust Parameters
 
-Откройте `string_art.py` и измените:
+Open `string_art.py` and change:
 
 ```python
-# Быстрый вариант (2 часа работы)
+# Quick variant (2 hours work)
 NUM_NAILS = 150
 NUM_STEPS = 2000
 
-# Качественный вариант (5 часов работы)
+# Quality variant (5 hours work)
 NUM_NAILS = 200
 NUM_STEPS = 4000
 ```
 
-## Нужна помощь?
+## Need Help?
 
-- 📖 Полная документация: `README.md`
-- 🔧 Примеры настроек: `EXAMPLES.md`
-- 🏗️ Техническая информация: `ARCHITECTURE.md`
-- ❓ Проблемы? Смотрите раздел FAQ в README
+- 📖 Complete documentation: `README.md`
+- 🔧 Configuration examples: `EXAMPLES.md`
+- 🏗️ Technical information: `ARCHITECTURE.md`
+- ❓ Problems? See FAQ section in README
 
-## Готово! 🎉
+## Done! 🎉
 
-Теперь вы готовы создавать потрясающие String Art работы!
+Now you're ready to create amazing String Art works!

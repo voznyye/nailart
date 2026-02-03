@@ -1,134 +1,134 @@
-# Техническая архитектура String Art Generator
+# Technical Architecture of String Art Generator
 
-## Обзор алгоритма
+## Algorithm Overview
 
-String Art Generator использует **жадный алгоритм** (greedy algorithm) для генерации оптимального маршрута нити.
+String Art Generator uses a **greedy algorithm** for generating optimal thread routing.
 
-### Основной принцип
+### Basic Principle
 
-1. **Инициализация**: Начинается с гвоздя 0 (верхняя точка круга)
-2. **Итерация**: На каждом шаге:
-   - Оценивает все возможные линии от текущего гвоздя к остальным
-   - Выбирает линию с максимальным "score" (покрывает наиболее темные области)
-   - "Рисует" эту линию, уменьшая яркость пикселей
-   - Переходит к выбранному гвоздю
-3. **Остановка**: Алгоритм останавливается когда:
-   - Достигнут лимит шагов (`NUM_STEPS`)
-   - Остаточное изображение стало достаточно светлым (`RESIDUAL_THRESHOLD`)
-   - Нет улучшений в течение `MAX_NO_IMPROVE` шагов
+1. **Initialization**: Starts from nail 0 (top point of circle)
+2. **Iteration**: At each step:
+   - Evaluates all possible lines from current nail to others
+   - Selects line with maximum "score" (covers darkest areas)
+   - "Draws" this line, reducing pixel brightness
+   - Moves to selected nail
+3. **Stop**: Algorithm stops when:
+   - Step limit reached (`NUM_STEPS`)
+   - Residual image becomes sufficiently light (`RESIDUAL_THRESHOLD`)
+   - No improvements for `MAX_NO_IMPROVE` steps
 
-## Структура кода
+## Code Structure
 
 ```
 string_art.py
 │
-├─ CONFIGURATION (строки 20-68)
-│  └─ Все настраиваемые параметры
+├─ CONFIGURATION (lines 20-68)
+│  └─ All configurable parameters
 │
-├─ NAIL GENERATION (строки 70-95)
-│  └─ generate_nails(): Генерация позиций гвоздей
+├─ NAIL GENERATION (lines 70-95)
+│  └─ generate_nails(): Nail position generation
 │
-├─ IMAGE PREPROCESSING (строки 97-151)
-│  ├─ preprocess_image(): Загрузка и обработка
-│  └─ enhance_contrast(): Увеличение контраста
+├─ IMAGE PREPROCESSING (lines 97-151)
+│  ├─ preprocess_image(): Loading and processing
+│  └─ enhance_contrast(): Contrast enhancement
 │
-├─ LINE DRAWING AND SCORING (строки 153-261)
-│  ├─ get_line_pixels(): Алгоритм Брезенхема
-│  ├─ score_line(): Оценка качества линии
-│  └─ draw_line(): Рисование линии
+├─ LINE DRAWING AND SCORING (lines 153-261)
+│  ├─ get_line_pixels(): Bresenham's algorithm
+│  ├─ score_line(): Line quality evaluation
+│  └─ draw_line(): Line drawing
 │
-├─ STRING ART ALGORITHM (строки 263-350)
-│  └─ simulate_string_art(): Основной алгоритм
+├─ STRING ART ALGORITHM (lines 263-350)
+│  └─ simulate_string_art(): Main algorithm
 │
-├─ OUTPUT GENERATION (строки 352-640)
-│  ├─ export_scheme_as_png(): Схема в PNG
-│  ├─ export_scheme_as_pdf(): Схема в PDF
-│  ├─ export_instructions_csv(): CSV инструкции
-│  ├─ export_instructions_txt(): TXT инструкции
-│  └─ render_drawing_simulation(): Симуляция результата
+├─ OUTPUT GENERATION (lines 352-640)
+│  ├─ export_scheme_as_png(): Scheme to PNG
+│  ├─ export_scheme_as_pdf(): Scheme to PDF
+│  ├─ export_instructions_csv(): CSV instructions
+│  ├─ export_instructions_txt(): TXT instructions
+│  └─ render_drawing_simulation(): Result simulation
 │
-└─ MAIN PROGRAM (строки 642-733)
-   └─ main(): Точка входа
+└─ MAIN PROGRAM (lines 642-733)
+   └─ main(): Entry point
 ```
 
-## Ключевые компоненты
+## Key Components
 
-### 1. Генерация позиций гвоздей
+### 1. Nail Position Generation
 
 ```python
 def generate_nails(num_nails, radius, center_x, center_y)
 ```
 
-- Распределяет гвозди равномерно по окружности
-- Начинает с верхней точки (90°) для интуитивного гвоздя 0
-- Возвращает массив координат (x, y)
+- Distributes nails evenly on circle
+- Starts from top point (90°) for intuitive nail 0
+- Returns array of coordinates (x, y)
 
-**Математика:**
+**Mathematics:**
 ```
 angle = π/2 + (2π × i / num_nails)
 x = center_x + radius × cos(angle)
 y = center_y + radius × sin(angle)
 ```
 
-### 2. Предобработка изображения
+### 2. Image Preprocessing
 
 ```python
 def preprocess_image(image_path, target_size, invert)
 ```
 
-**Шаги:**
-1. Загрузка изображения
-2. Конвертация в градации серого
-3. Обрезка до квадрата (центрированная)
-4. Изменение размера до `TARGET_SIZE`
-5. Нормализация к диапазону [0.0, 1.0]
-6. Инверсия (опционально): тёмные области → высокие значения
-7. Увеличение контраста
+**Steps:**
+1. Load image
+2. Convert to grayscale
+3. Crop to square (centered)
+4. Resize to `TARGET_SIZE`
+5. Normalize to range [0.0, 1.0]
+6. Invert (optional): dark areas → high values
+7. Enhance contrast
 
-**Инверсия:**
-- `invert=True`: темные области получают больше нитей
-- Формула: `img_array = 1.0 - img_array`
+**Inversion:**
+- `invert=True`: dark areas get more threads
+- Formula: `img_array = 1.0 - img_array`
 
-### 3. Алгоритм Брезенхема
+### 3. Bresenham's Algorithm
 
 ```python
 def get_line_pixels(x0, y0, x1, y1)
 ```
 
-Классический алгоритм для получения всех пикселей вдоль линии:
-- Эффективный (без вычислений с плавающей точкой)
-- Используется для оценки и рисования линий
+Classic algorithm for getting all pixels along a line:
+- Efficient (no floating-point operations)
+- Used for scoring and drawing lines
 
-### 4. Оценка линии (Scoring)
+### 4. Line Scoring
 
 ```python
 def score_line(img_array, x0, y0, x1, y1, line_weight)
 ```
 
-**Принцип:**
-- Суммирует яркость всех пикселей вдоль линии
-- Высокий score = линия покрывает много темных областей
-- Формула: `score = Σ pixel_values`
+**Principle:**
+- Sums brightness of all pixels along line
+- High score = line covers many dark areas
+- Formula: `score = Σ pixel_values`
 
-### 5. Рисование линии
+### 5. Line Drawing
 
 ```python
 def draw_line(img_array, x0, y0, x1, y1, strength, line_weight)
 ```
 
-**Принцип:**
-- Уменьшает яркость пикселей вдоль линии
-- Имитирует наложение нити
-- Формула: `pixel = max(0, pixel - strength)`
-- Clamp к [0.0, 1.0] для предотвращения отрицательных значений
+**Principle:**
+- Reduces brightness of pixels along line
+- Simulates thread overlay
+- Formula: `pixel = max(0, pixel - strength)`
+- Clamp to [0.0, 1.0] to prevent negative values
 
-### 6. Основной алгоритм симуляции
+### 6. Main Simulation Algorithm
 
 ```python
 def simulate_string_art(img_array, nails, num_steps, thread_strength, line_weight)
 ```
 
-**Псевдокод:**
+**Pseudocode:**
 ```
 current_nail = 0
 instructions = []
@@ -160,178 +160,178 @@ for step in 1..NUM_STEPS:
 return instructions
 ```
 
-**Оптимизации:**
-- **AUTO_STOP**: Автоматическая остановка при достижении оптимума
-- **RESIDUAL_THRESHOLD**: Порог для определения "пустого" изображения
-- **MAX_NO_IMPROVE**: Остановка при отсутствии улучшений
+**Optimizations:**
+- **AUTO_STOP**: Automatic stop when reaching optimum
+- **RESIDUAL_THRESHOLD**: Threshold for determining "empty" image
+- **MAX_NO_IMPROVE**: Stop when no improvements
 
-### 7. Экспорт схемы гвоздей
+### 7. Nail Scheme Export
 
 ```python
 def export_scheme_as_pdf/png(...)
 ```
 
-**Особенности:**
-- Масштабирование из пиксельного пространства в физическое (мм)
-- Адаптивный размер шрифта на основе количества гвоздей
-- Выделение каждого N-го гвоздя (красный цвет)
-- Направляющие линии каждые 30° для точного размещения
-- Белые рамки вокруг номеров для читаемости
-- Красная звезда на гвозде 0 (начальная точка)
-- Физические размеры на схеме
+**Features:**
+- Scaling from pixel space to physical (mm)
+- Adaptive font size based on nail count
+- Highlighting every Nth nail (red color)
+- Guide lines every 30° for precise placement
+- White borders around numbers for readability
+- Red star on nail 0 (starting point)
+- Physical dimensions on scheme
 
-**Масштабирование:**
+**Scaling:**
 ```
 scale = drawable_size_px / TARGET_SIZE
 x_plot = x * scale + offset_x
 y_plot = y * scale + offset_y
 ```
 
-### 8. Экспорт CSV инструкций
+### 8. CSV Instructions Export
 
 ```python
 def export_instructions_csv(instructions, nails, filename)
 ```
 
-**Расчеты:**
-- **Длина сегмента**: Евклидово расстояние в мм
+**Calculations:**
+- **Segment length**: Euclidean distance in mm
   ```
   length_px = √((x1-x0)² + (y1-y0)²)
   length_mm = length_px × px_to_mm_scale
   ```
-- **Угол**: arctg2 для определения направления (0-360°)
-- **Прогресс**: (step / total_steps) × 100
-- **Секция**: Разбивка на 10 частей для удобства
-- **Общая длина**: Сумма всех сегментов + 20% запас
+- **Angle**: atan2 for determining direction (0-360°)
+- **Progress**: (step / total_steps) × 100
+- **Section**: Division into 10 parts for convenience
+- **Total length**: Sum of all segments + 20% safety margin
 
-### 9. Симуляция финального результата
+### 9. Final Result Simulation
 
 ```python
 def render_drawing_simulation(instructions, nails, canvas_size, filename, dpi)
 ```
 
-**Техника:**
-- RGBA холст с цветом бумаги
-- Альфа-блендинг для реалистичного наложения нитей
-- Низкая альфа (15/255) × много слоёв = реалистичное затемнение
-- Периодическое композитирование (каждые 500 линий)
-- Гвозди рисуются поверх нитей
-- Красный маркер начала (гвоздь 0)
+**Technique:**
+- RGBA canvas with paper color
+- Alpha-blending for realistic thread overlay
+- Low alpha (15/255) × many layers = realistic darkening
+- Periodic compositing (every 500 lines)
+- Nails drawn on top of threads
+- Red start marker (nail 0)
 
-**Альфа-композитинг:**
+**Alpha Compositing:**
 ```
 result = (fg × alpha) + (bg × (1 - alpha))
 ```
 
-## Параметры и их влияние
+## Parameters and Their Impact
 
-### NUM_NAILS (количество гвоздей)
-- **Влияние на детализацию**: Больше гвоздей → больше возможных направлений → выше детализация
-- **Влияние на сложность**: O(n²) на каждой итерации (n = NUM_NAILS)
-- **Рекомендации**: 150-250 для баланса
+### NUM_NAILS (number of nails)
+- **Impact on detail**: More nails → more possible directions → higher detail
+- **Impact on complexity**: O(n²) at each iteration (n = NUM_NAILS)
+- **Recommendations**: 150-250 for balance
 
-### NUM_STEPS (количество шагов)
-- **Влияние на полноту**: Больше шагов → более полное покрытие
-- **Влияние на время**: Линейное увеличение времени выполнения
-- **Рекомендации**: 2000-5000 в зависимости от изображения
+### NUM_STEPS (number of steps)
+- **Impact on completeness**: More steps → more complete coverage
+- **Impact on time**: Linear increase in execution time
+- **Recommendations**: 2000-5000 depending on image
 
-### TARGET_SIZE (размер обработки)
-- **Влияние на качество**: Больше → выше точность оценки линий
-- **Влияние на память**: Квадратичное (TARGET_SIZE²)
-- **Влияние на скорость**: Квадратичное увеличение
-- **Рекомендации**: 600-1200
+### TARGET_SIZE (processing size)
+- **Impact on quality**: Larger → higher accuracy of line evaluation
+- **Impact on memory**: Quadratic (TARGET_SIZE²)
+- **Impact on speed**: Quadratic increase
+- **Recommendations**: 600-1200
 
-### THREAD_STRENGTH (сила нити)
-- **Влияние на контраст**: Выше → темнее результат
-- **Диапазон**: 0.15-0.30 оптимально
-- **Настройка**: Зависит от контраста входного изображения
+### THREAD_STRENGTH (thread strength)
+- **Impact on contrast**: Higher → darker result
+- **Range**: 0.15-0.30 optimal
+- **Adjustment**: Depends on input image contrast
 
-### LINE_WEIGHT (толщина линии)
-- **Влияние на покрытие**: Влияет на оценку score
-- **Настройка**: 10-15 для большинства случаев
+### LINE_WEIGHT (line thickness)
+- **Impact on coverage**: Affects score evaluation
+- **Adjustment**: 10-15 for most cases
 
-## Сложность алгоритма
+## Algorithm Complexity
 
-### Временная сложность
-- **Предобработка**: O(TARGET_SIZE²)
-- **Генерация гвоздей**: O(NUM_NAILS)
-- **Основной цикл**: O(NUM_STEPS × NUM_NAILS × line_length)
-  - NUM_STEPS итераций
-  - NUM_NAILS оценок на каждой итерации
-  - line_length пикселей в каждой линии
-- **Итого**: O(NUM_STEPS × NUM_NAILS × TARGET_SIZE)
+### Time Complexity
+- **Preprocessing**: O(TARGET_SIZE²)
+- **Nail generation**: O(NUM_NAILS)
+- **Main loop**: O(NUM_STEPS × NUM_NAILS × line_length)
+  - NUM_STEPS iterations
+  - NUM_NAILS evaluations at each iteration
+  - line_length pixels in each line
+- **Total**: O(NUM_STEPS × NUM_NAILS × TARGET_SIZE)
 
-### Пространственная сложность
-- **Рабочее изображение**: O(TARGET_SIZE²)
-- **Массив гвоздей**: O(NUM_NAILS)
-- **Инструкции**: O(NUM_STEPS)
-- **Итого**: O(TARGET_SIZE²)
+### Space Complexity
+- **Working image**: O(TARGET_SIZE²)
+- **Nail array**: O(NUM_NAILS)
+- **Instructions**: O(NUM_STEPS)
+- **Total**: O(TARGET_SIZE²)
 
-## Ограничения и компромиссы
+## Limitations and Trade-offs
 
-### Жадный алгоритм
-- **Преимущества**: Быстрый, простой, даёт хорошие результаты
-- **Недостатки**: Не гарантирует глобальный оптимум
-- **Альтернативы**: Генетические алгоритмы, имитация отжига (медленнее)
+### Greedy Algorithm
+- **Advantages**: Fast, simple, gives good results
+- **Disadvantages**: Doesn't guarantee global optimum
+- **Alternatives**: Genetic algorithms, simulated annealing (slower)
 
-### Одноцветная нить
-- Текущая версия оптимизирована для одного цвета нити
-- Многоцветный string art требует отдельных слоёв для каждого цвета
+### Single-color Thread
+- Current version optimized for single thread color
+- Multi-color string art requires separate layers for each color
 
-### Круглая форма
-- Гвозди размещаются только на окружности
-- Другие формы (квадрат, сердце) требуют модификации
+### Circular Shape
+- Nails placed only on circle circumference
+- Other shapes (square, heart) require modification
 
-## Возможные улучшения
+## Possible Improvements
 
-### Алгоритмические
-1. **Локальная оптимизация**: Пересмотр последних N шагов
-2. **Beam search**: Рассмотрение нескольких лучших вариантов
-3. **Adaptive parameters**: Динамическое изменение THREAD_STRENGTH
+### Algorithmic
+1. **Local optimization**: Review last N steps
+2. **Beam search**: Consider several best options
+3. **Adaptive parameters**: Dynamic THREAD_STRENGTH changes
 
-### Функциональные
-1. **Многоцветный string art**: Отдельные слои для каждого цвета
-2. **Другие формы**: Квадрат, прямоугольник, сердце
-3. **Переменная плотность гвоздей**: Больше в областях с деталями
+### Functional
+1. **Multi-color string art**: Separate layers for each color
+2. **Other shapes**: Square, rectangle, heart
+3. **Variable nail density**: More nails in detailed areas
 
-### Производительность
-1. **Параллелизация**: Оценка линий параллельно
-2. **Кеширование**: Кеш координат линий
-3. **GPU ускорение**: Использование CUDA для оценки линий
+### Performance
+1. **Parallelization**: Parallel line evaluation
+2. **Caching**: Cache line coordinates
+3. **GPU acceleration**: Use CUDA for line evaluation
 
-## Зависимости
+## Dependencies
 
 ### NumPy
-- Векторные операции над изображениями
-- Математические функции (cos, sin, arctan2)
-- Массивы координат
+- Vector operations on images
+- Mathematical functions (cos, sin, arctan2)
+- Coordinate arrays
 
 ### Pillow (PIL)
-- Загрузка изображений
-- Преобразование форматов
-- Рисование на холсте (альфа-блендинг)
+- Image loading
+- Format conversion
+- Canvas drawing (alpha-blending)
 
 ### Matplotlib
-- Генерация схем PDF/PNG
-- Графики и визуализация
-- Экспорт в высоком разрешении
+- PDF/PNG scheme generation
+- Plots and visualization
+- High-resolution export
 
-## Тестирование
+## Testing
 
-### Рекомендуемые тестовые изображения
-1. **Высокий контраст**: Логотипы, силуэты
-2. **Средний контраст**: Портреты
-3. **Низкий контраст**: Пейзажи
+### Recommended Test Images
+1. **High contrast**: Logos, silhouettes
+2. **Medium contrast**: Portraits
+3. **Low contrast**: Landscapes
 
-### Контрольные параметры
-- Проверка валидации входных данных
-- Тест на крайних случаях (NUM_NAILS=10, NUM_STEPS=100)
-- Тест производительности (TARGET_SIZE=2000)
+### Control Parameters
+- Input data validation check
+- Edge case tests (NUM_NAILS=10, NUM_STEPS=100)
+- Performance test (TARGET_SIZE=2000)
 
-## Лицензия
+## License
 
-MIT License - свободное использование для личных и коммерческих проектов.
+MIT License - free to use for personal and commercial projects.
 
-## Контакты
+## Contact
 
-При вопросах по технической реализации, обращайтесь к исходному коду и комментариям.
+For technical implementation questions, refer to source code and comments.

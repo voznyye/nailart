@@ -4,106 +4,106 @@
 ![Python](https://img.shields.io/badge/Python-3.8%2B-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-Профессиональный генератор string art (nail art) - создавайте потрясающие картины из нитей и гвоздей на основе любого изображения.
+Professional string art (nail art) generator - create stunning thread and nail artworks from any image.
 
-## 📋 Содержание
+## 📋 Table of Contents
 
-- [Что такое String Art?](#что-такое-string-art)
-- [Возможности](#возможности)
-- [Установка](#установка)
-- [Быстрый старт](#быстрый-старт)
-- [Конфигурация](#конфигурация)
-- [Выходные файлы](#выходные-файлы)
-- [Пошаговая инструкция создания](#пошаговая-инструкция-создания)
-- [Архитектура кода](#архитектура-кода)
+- [What is String Art?](#what-is-string-art)
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Configuration](#configuration)
+- [Output Files](#output-files)
+- [Step-by-Step Creation Guide](#step-by-step-creation-guide)
+- [Code Architecture](#code-architecture)
 - [FAQ](#faq)
-- [Советы и рекомендации](#советы-и-рекомендации)
+- [Tips and Recommendations](#tips-and-recommendations)
 
-## 🎯 Что такое String Art?
+## 🎯 What is String Art?
 
-**String Art (Nail Art)** — это художественная техника создания изображений путём наматывания нити между гвоздями, закреплёнными на плоской поверхности. Многократное пересечение нитей создаёт эффект светотени, формируя узнаваемое изображение.
+**String Art (Nail Art)** is an artistic technique of creating images by wrapping thread between nails fixed on a flat surface. Multiple thread crossings create light and shadow effects, forming a recognizable image.
 
-Этот проект автоматизирует процесс планирования string art:
-- Анализирует любое изображение
-- Генерирует оптимальный маршрут нити
-- Создаёт готовую к печати схему размещения гвоздей (A3)
-- Выдаёт пошаговые инструкции для создания
+This project automates the string art planning process:
+- Analyzes any image
+- Generates optimal thread routing
+- Creates print-ready nail placement scheme (A3 format)
+- Provides step-by-step creation instructions
 
-## ✨ Возможности
+## ✨ Features
 
-### 🎨 Оптимизация для формата A3
-- Идеальные размеры для листа **A3** (297×420 мм)
-- Рабочая область: круг диаметром **227 мм**
-- Оптимальное количество гвоздей: **180** (баланс детализации и удобства)
-- Автоматический расчёт физических размеров
+### 🎨 A3 Format Optimization
+- Perfect dimensions for **A3** sheet (297×420 mm)
+- Working area: circle with diameter of **227 mm**
+- Optimal nail count: **180** (balance of detail and convenience)
+- Automatic physical size calculations
 
-### 📍 Чёткая схема размещения гвоздей
-- **Крупная читаемая нумерация** каждого гвоздя
-- Контрастные рамки вокруг номеров для удобства чтения
-- Выделение каждого 10-го гвоздя красным цветом
-- Красная звезда на гвозде №0 (начальная точка)
-- Направляющие линии каждые 30° для точного размещения
-- Физические размеры (мм) на схеме
-- Экспорт в **PDF** и **PNG** (300 DPI)
+### 📍 Clear Nail Placement Scheme
+- **Large readable numbering** for each nail
+- Contrasting borders around numbers for easy reading
+- Every 10th nail highlighted in red
+- Red star on nail #0 (starting point)
+- Guide lines every 30° for precise placement
+- Physical dimensions (mm) on the scheme
+- Export to **PDF** and **PNG** (300 DPI)
 
-### 📊 Подробные CSV инструкции
-Каждый шаг содержит:
-- Номер шага
-- Начальный и конечный гвоздь
-- **Длина сегмента** в миллиметрах
-- Угол направления (0-360°)
-- Прогресс выполнения (%)
-- Номер секции (разбивка на 10 частей)
-- **Общая длина нити** с запасом (+20%)
+### 📊 Detailed CSV Instructions
+Each step contains:
+- Step number
+- Start and end nail
+- **Segment length** in millimeters
+- Direction angle (0-360°)
+- Completion progress (%)
+- Section number (divided into 10 parts)
+- **Total thread length** with safety margin (+20%)
 
-### 🖼️ Реалистичная симуляция результата
-- Высококачественная визуализация финального вида
-- Реалистичное наложение нитей с альфа-блендингом
-- Имитация бумажной основы
-- Экспорт симуляции в PNG и PDF (A3)
-- Красный маркер начала (гвоздь 0)
+### 🖼️ Realistic Result Simulation
+- High-quality visualization of final appearance
+- Realistic thread overlay with alpha-blending
+- Paper base imitation
+- Simulation export to PNG and PDF (A3)
+- Red start marker (nail 0)
 
-### 🧮 Умный алгоритм
-- Автоматическая остановка при достижении оптимума
-- Адаптивный выбор следующей нити
-- Контроль качества изображения на каждом шаге
+### 🧮 Smart Algorithm
+- Automatic stop when reaching optimum
+- Adaptive selection of next thread
+- Image quality control at each step
 
-## 🔧 Установка
+## 🔧 Installation
 
-### Требования
+### Requirements
 - **Python 3.8+**
-- pip (менеджер пакетов Python)
+- pip (Python package manager)
 
-### Установка зависимостей
+### Installing Dependencies
 
 ```bash
-# Клонировать или скачать проект
+# Clone or download the project
 cd art
 
-# Установить зависимости
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### Зависимости
-- `Pillow` >= 9.0.0 - обработка изображений
-- `numpy` >= 1.23.0 - математические операции
-- `matplotlib` >= 3.5.0 - генерация схем и PDF
+### Dependencies
+- `Pillow` >= 9.0.0 - image processing
+- `numpy` >= 1.23.0 - mathematical operations
+- `matplotlib` >= 3.5.0 - scheme and PDF generation
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-### 1. Подготовьте изображение
-- Любой формат: JPG, PNG, BMP и т.д.
-- Рекомендуется: квадратное изображение
-- Высокая контрастность даёт лучший результат
-- Размер: от 500×500 px
+### 1. Prepare an Image
+- Any format: JPG, PNG, BMP, etc.
+- Recommended: square image
+- High contrast gives better results
+- Size: 500×500 px minimum
 
-### 2. Запустите генератор
+### 2. Run the Generator
 
 ```bash
 python string_art.py image.png
 ```
 
-### 3. Дождитесь завершения
+### 3. Wait for Completion
 
 ```
 ============================================================
@@ -129,72 +129,72 @@ Step 4: Exporting outputs...
 GENERATION COMPLETE!
 ```
 
-### 4. Получите файлы
-- `nails_scheme.pdf` / `nails_scheme.png` - схема размещения гвоздей
-- `instructions.csv` - пошаговые инструкции
-- `drawing_simulation.png` / `drawing_simulation.pdf` - симуляция результата
+### 4. Get the Files
+- `nails_scheme.pdf` / `nails_scheme.png` - nail placement scheme
+- `instructions.csv` - step-by-step instructions
+- `drawing_simulation.png` / `drawing_simulation.pdf` - result simulation
 
-## ⚙️ Конфигурация
+## ⚙️ Configuration
 
-Все параметры настраиваются в начале файла `string_art.py`:
+All parameters can be adjusted at the beginning of `string_art.py`:
 
-### Физические размеры (A3)
+### Physical Dimensions (A3)
 ```python
-A3_WIDTH_MM = 297          # Ширина листа A3
-A3_HEIGHT_MM = 420         # Высота листа A3
-MARGIN_MM = 35             # Отступ от края
-CIRCLE_RADIUS_MM = 113.5   # Радиус круга с гвоздями
+A3_WIDTH_MM = 297          # A3 sheet width
+A3_HEIGHT_MM = 420         # A3 sheet height
+MARGIN_MM = 35             # Margin from edge
+CIRCLE_RADIUS_MM = 113.5   # Circle radius with nails
 ```
 
-### Параметры гвоздей
+### Nail Parameters
 ```python
-NUM_NAILS = 180                   # Количество гвоздей
-NAIL_NUMBER_FONT_SIZE_BASE = 14   # Размер шрифта нумерации
-NAIL_NUMBER_OFFSET_MM = 8         # Отступ номеров от гвоздей
-HIGHLIGHT_EVERY_NTH_NAIL = 10     # Выделять каждый N-й гвоздь
+NUM_NAILS = 180                   # Number of nails
+NAIL_NUMBER_FONT_SIZE_BASE = 14   # Numbering font size
+NAIL_NUMBER_OFFSET_MM = 8         # Number offset from nails
+HIGHLIGHT_EVERY_NTH_NAIL = 10     # Highlight every Nth nail
 ```
 
-### Алгоритм
+### Algorithm
 ```python
-TARGET_SIZE = 800          # Разрешение обработки (выше = качественнее)
-NUM_STEPS = 3500           # Максимум сегментов нити
-THREAD_STRENGTH = 0.22     # Интенсивность затемнения (0.0-1.0)
-LINE_WEIGHT = 12           # Толщина линии нити
-AUTO_STOP = True           # Автоостановка при оптимуме
+TARGET_SIZE = 800          # Processing resolution (higher = better quality)
+NUM_STEPS = 3500           # Maximum thread segments
+THREAD_STRENGTH = 0.22     # Darkening intensity (0.0-1.0)
+LINE_WEIGHT = 12           # Thread line thickness
+AUTO_STOP = True           # Auto-stop at optimum
 ```
 
-### Обработка изображения
+### Image Processing
 ```python
-INVERT_IMAGE = True        # True: тёмные области → больше нитей
+INVERT_IMAGE = True        # True: dark areas → more threads
 ```
 
-### Экспорт
+### Export
 ```python
-EXPORT_SCHEME_PDF = True   # Схема в PDF
-EXPORT_SCHEME_PNG = True   # Схема в PNG
-SCHEME_DPI = 300           # Качество печати
-EXPORT_FORMAT = "csv"      # Формат инструкций: "csv" или "txt"
+EXPORT_SCHEME_PDF = True   # Scheme to PDF
+EXPORT_SCHEME_PNG = True   # Scheme to PNG
+SCHEME_DPI = 300           # Print quality
+EXPORT_FORMAT = "csv"      # Instructions format: "csv" or "txt"
 ```
 
-## 📦 Выходные файлы
+## 📦 Output Files
 
 ### 1. `nails_scheme.pdf` / `nails_scheme.png`
-**Схема размещения гвоздей** для печати на A3:
-- Круг с 180 пронумерованными позициями
-- Красная звезда на гвозде 0 (начало)
-- Каждый 10-й гвоздь выделен красным
-- Направляющие линии каждые 30°
-- Физические размеры (227 мм диаметр)
-- Готово к печати на A3 (300 DPI)
+**Nail placement scheme** for A3 printing:
+- Circle with 180 numbered positions
+- Red star on nail 0 (start)
+- Every 10th nail highlighted in red
+- Guide lines every 30°
+- Physical dimensions (227 mm diameter)
+- Ready to print on A3 (300 DPI)
 
-**Как использовать:**
-1. Распечатайте на листе A3
-2. Закрепите схему на деревянной доске/фанере
-3. Забейте гвозди по отмеченным точкам
-4. Удалите бумажную схему
+**How to use:**
+1. Print on A3 sheet
+2. Fix the scheme on wooden board/plywood
+3. Hammer nails at marked points
+4. Remove paper scheme
 
 ### 2. `instructions.csv`
-**Пошаговые инструкции** в формате CSV:
+**Step-by-step instructions** in CSV format:
 
 | Step | From_Nail | To_Nail | Length_mm | Angle_deg | Progress_% | Section |
 |------|-----------|---------|-----------|-----------|------------|---------|
@@ -202,216 +202,216 @@ EXPORT_FORMAT = "csv"      # Формат инструкций: "csv" или "tx
 | 2    | 89        | 34      | 167.3     | 45.8      | 0.2        | 1       |
 | ...  | ...       | ...     | ...       | ...       | ...        | ...     |
 
-**Дополнительная информация:**
-- Общее количество шагов
-- Общая длина нити в метрах
-- Рекомендуемая длина нити (с запасом +20%)
+**Additional information:**
+- Total number of steps
+- Total thread length in meters
+- Recommended thread length (with +20% safety margin)
 
-**Как использовать:**
-1. Откройте CSV в Excel / Google Sheets
-2. Начните с гвоздя 0 (красная звезда)
-3. Следуйте инструкциям: от гвоздя → к гвоздю
-4. Каждая секция (1-10) - удобная точка для паузы
+**How to use:**
+1. Open CSV in Excel / Google Sheets
+2. Start from nail 0 (red star)
+3. Follow instructions: from nail → to nail
+4. Each section (1-10) is a convenient pause point
 
 ### 3. `drawing_simulation.png` / `drawing_simulation.pdf`
-**Реалистичная симуляция** финального результата:
-- Показывает, как будет выглядеть готовая работа
-- Все нити отрисованы с реалистичным наложением
-- Красный маркер начала
-- Формат A3 для сравнения
+**Realistic simulation** of final result:
+- Shows how the finished work will look
+- All threads drawn with realistic overlay
+- Red start marker
+- A3 format for comparison
 
-**Как использовать:**
-- Оцените результат перед началом работы
-- Сравните с готовой работой для контроля качества
-- Покажите заказчику ожидаемый результат
+**How to use:**
+- Evaluate result before starting work
+- Compare with finished work for quality control
+- Show expected result to client
 
-## 🛠️ Пошаговая инструкция создания
+## 🛠️ Step-by-Step Creation Guide
 
-### Материалы
-- **Основа:** деревянная доска/фанера/МДФ (минимум A3 размера)
-- **Гвозди:** 180 штук, длина 15-25 мм
-- **Нить:** чёрная/тёмная нить (рассчитайте по CSV, обычно 30-50 метров)
-- **Инструменты:** молоток, принтер, клей для бумаги (временный)
+### Materials
+- **Base:** wooden board/plywood/MDF (minimum A3 size)
+- **Nails:** 180 pieces, length 15-25 mm
+- **Thread:** black/dark thread (calculate from CSV, usually 30-50 meters)
+- **Tools:** hammer, printer, paper glue (temporary)
 
-### Процесс
+### Process
 
-#### Этап 1: Подготовка основы
-1. Возьмите доску размером минимум A3 (297×420 мм)
-2. Отшлифуйте поверхность
-3. По желанию покрасьте (белый/светлый фон)
-4. Дайте высохнуть
+#### Stage 1: Base Preparation
+1. Take a board at least A3 size (297×420 mm)
+2. Sand the surface
+3. Optionally paint (white/light background)
+4. Let dry
 
-#### Этап 2: Разметка гвоздей
-1. Распечатайте `nails_scheme.pdf` на листе A3
-2. Приклейте схему на доску (временный клей или скотч)
-3. **Важно:** убедитесь, что круг точно по центру
-4. Молотком забейте гвозди в каждую точку (180 штук)
-5. Гвозди должны торчать на 5-10 мм над поверхностью
-6. Аккуратно удалите бумажную схему
+#### Stage 2: Nail Marking
+1. Print `nails_scheme.pdf` on A3 sheet
+2. Glue the scheme onto the board (temporary glue or tape)
+3. **Important:** ensure the circle is exactly centered
+4. Hammer nails at each point (180 pieces)
+5. Nails should protrude 5-10 mm above surface
+6. Carefully remove paper scheme
 
-#### Этап 3: Натягивание нити
-1. Откройте `instructions.csv`
-2. Найдите гвоздь 0 (красная звезда на доске)
-3. Привяжите конец нити к гвоздю 0
-4. Следуйте инструкциям из CSV:
-   - **Шаг 1:** От гвоздя 0 → к гвоздю X
-   - **Шаг 2:** От гвоздя X → к гвоздю Y
-   - И так далее...
-5. **Важно:** не натягивайте нить слишком сильно (средняя натяжка)
-6. Не обрезайте нить между шагами - всё делается одной нитью
-7. Делайте паузы после каждой секции (10 секций всего)
+#### Stage 3: Thread Wrapping
+1. Open `instructions.csv`
+2. Find nail 0 (red star on board)
+3. Tie thread end to nail 0
+4. Follow instructions from CSV:
+   - **Step 1:** From nail 0 → to nail X
+   - **Step 2:** From nail X → to nail Y
+   - And so on...
+5. **Important:** don't pull thread too tight (medium tension)
+6. Don't cut thread between steps - everything is done with one thread
+7. Take breaks after each section (10 sections total)
 
-#### Этап 4: Завершение
-1. Когда все шаги выполнены, завяжите конец нити на последнем гвозде
-2. Обрежьте лишнее
-3. По желанию: нанесите прозрачный лак для защиты
+#### Stage 4: Finishing
+1. When all steps are completed, tie thread end at last nail
+2. Cut excess
+3. Optionally: apply clear varnish for protection
 
-### ⏱️ Время выполнения
-- Подготовка: 30-60 минут
-- Размещение гвоздей: 1-2 часа
-- Натягивание нити: 3-6 часов (зависит от количества шагов)
-- **Итого:** 5-9 часов работы
+### ⏱️ Time Required
+- Preparation: 30-60 minutes
+- Nail placement: 1-2 hours
+- Thread wrapping: 3-6 hours (depends on number of steps)
+- **Total:** 5-9 hours of work
 
-## 🏗️ Архитектура кода
+## 🏗️ Code Architecture
 
-### Структура модулей
+### Module Structure
 
 ```
 string_art.py
-├── CONFIGURATION          # Все настраиваемые параметры
-├── NAIL GENERATION        # Генерация позиций гвоздей
-├── IMAGE PREPROCESSING    # Загрузка и обработка изображения
-├── LINE DRAWING/SCORING   # Алгоритм Брезенхема, оценка линий
-├── STRING ART ALGORITHM   # Основной алгоритм симуляции
-├── OUTPUT GENERATION      # Экспорт схем, инструкций, симуляции
-└── MAIN PROGRAM           # Точка входа
+├── CONFIGURATION          # All configurable parameters
+├── NAIL GENERATION        # Nail position generation
+├── IMAGE PREPROCESSING    # Image loading and processing
+├── LINE DRAWING/SCORING   # Bresenham algorithm, line scoring
+├── STRING ART ALGORITHM   # Main simulation algorithm
+├── OUTPUT GENERATION      # Scheme, instructions, simulation export
+└── MAIN PROGRAM           # Entry point
 ```
 
-### Ключевые функции
+### Key Functions
 
 #### `generate_nails(num_nails, radius, center_x, center_y)`
-Генерирует равномерно распределённые позиции гвоздей на окружности.
+Generates evenly distributed nail positions on a circle.
 
 #### `preprocess_image(image_path, target_size, invert)`
-Загружает, масштабирует и нормализует входное изображение.
+Loads, scales, and normalizes input image.
 
 #### `simulate_string_art(img_array, nails, num_steps, ...)`
-Основной алгоритм:
-1. Начинает с гвоздя 0
-2. На каждом шаге выбирает следующий гвоздь, который максимально покрывает тёмные области
-3. "Рисует" линию, уменьшая яркость в рабочем изображении
-4. Повторяет до достижения оптимума или лимита шагов
+Main algorithm:
+1. Starts from nail 0
+2. At each step, selects the next nail that best covers dark areas
+3. "Draws" the line, reducing brightness in the working image
+4. Repeats until reaching optimum or step limit
 
 #### `export_scheme_as_pdf/png(...)`
-Создаёт схему размещения гвоздей:
-- Масштабирует координаты под A3
-- Добавляет нумерацию с оптимальным размером и отступами
-- Рисует направляющие и маркеры
-- Экспортирует в высоком разрешении (300 DPI)
+Creates nail placement scheme:
+- Scales coordinates for A3
+- Adds numbering with optimal size and offsets
+- Draws guides and markers
+- Exports in high resolution (300 DPI)
 
 #### `export_instructions_csv(...)`
-Создаёт детальные инструкции:
-- Рассчитывает физическую длину каждого сегмента
-- Вычисляет углы и прогресс
-- Группирует по секциям
-- Добавляет сводку с общей длиной нити
+Creates detailed instructions:
+- Calculates physical length of each segment
+- Computes angles and progress
+- Groups by sections
+- Adds summary with total thread length
 
 #### `render_drawing_simulation(...)`
-Создаёт реалистичную симуляцию:
-- Рисует все нити с альфа-блендингом
-- Имитирует наложение и затемнение
-- Добавляет гвозди и маркеры
-- Экспортирует в PNG и PDF
+Creates realistic simulation:
+- Draws all threads with alpha-blending
+- Simulates overlay and darkening
+- Adds nails and markers
+- Exports to PNG and PDF
 
 ## ❓ FAQ
 
-### Можно ли использовать другой размер листа?
-Да! Измените параметры `A3_WIDTH_MM`, `A3_HEIGHT_MM` и `MARGIN_MM` для других форматов (A4, A2, и т.д.).
+### Can I use a different sheet size?
+Yes! Change `A3_WIDTH_MM`, `A3_HEIGHT_MM` and `MARGIN_MM` parameters for other formats (A4, A2, etc.).
 
-### Сколько нитей нужно?
-Смотрите в `instructions.csv` в конце файла - там указана рекомендуемая длина нити с запасом.
+### How much thread do I need?
+Check `instructions.csv` at the end of the file - it shows recommended thread length with safety margin.
 
-### Можно ли изменить количество гвоздей?
-Да, измените `NUM_NAILS`. Рекомендуемый диапазон: 150-250.
-- **Меньше гвоздей** → проще создавать, но меньше деталей
-- **Больше гвоздей** → больше деталей, но сложнее выполнять
+### Can I change the number of nails?
+Yes, change `NUM_NAILS`. Recommended range: 150-250.
+- **Fewer nails** → easier to create, but less detail
+- **More nails** → more detail, but harder to execute
 
-### Как улучшить качество изображения?
-1. Увеличьте `TARGET_SIZE` (800-1200)
-2. Увеличьте `NUM_NAILS` (200-250)
-3. Используйте контрастное входное изображение
+### How to improve image quality?
+1. Increase `TARGET_SIZE` (800-1200)
+2. Increase `NUM_NAILS` (200-250)
+3. Use high-contrast input image
 
-### Программа работает слишком долго
-1. Уменьшите `NUM_STEPS` (2500-3000)
-2. Уменьшите `TARGET_SIZE` (600-800)
-3. Убедитесь, что `AUTO_STOP = True`
+### Program runs too long
+1. Decrease `NUM_STEPS` (2500-3000)
+2. Decrease `TARGET_SIZE` (600-800)
+3. Ensure `AUTO_STOP = True`
 
-### Результат получается слишком тёмным/светлым
-- **Слишком тёмный:** уменьшите `THREAD_STRENGTH` (0.15-0.20)
-- **Слишком светлый:** увеличьте `THREAD_STRENGTH` (0.25-0.30)
+### Result is too dark/light
+- **Too dark:** decrease `THREAD_STRENGTH` (0.15-0.20)
+- **Too light:** increase `THREAD_STRENGTH` (0.25-0.30)
 
-### Можно ли использовать цветные нити?
-Алгоритм оптимизирован для одноцветных нитей. Для многоцветного string art требуется модификация алгоритма.
+### Can I use colored threads?
+Algorithm is optimized for single-color thread. Multi-color string art requires algorithm modification.
 
-## 💡 Советы и рекомендации
+## 💡 Tips and Recommendations
 
-### Выбор изображения
-- ✅ **Хорошо:** портреты, лица, простые объекты, высокий контраст
-- ❌ **Плохо:** сложные детали, низкий контраст, много мелких элементов
+### Image Selection
+- ✅ **Good:** portraits, faces, simple objects, high contrast
+- ❌ **Bad:** complex details, low contrast, many small elements
 
-### Выбор нити
-- **Толщина:** 0.5-1 мм (тонкая швейная или вышивальная нить)
-- **Цвет:** чёрная или тёмная нить на светлом фоне
-- **Материал:** хлопок, полиэстер, акрил
+### Thread Selection
+- **Thickness:** 0.5-1 mm (thin sewing or embroidery thread)
+- **Color:** black or dark thread on light background
+- **Material:** cotton, polyester, acrylic
 
-### Выбор гвоздей
-- **Длина:** 15-25 мм
-- **Толщина:** тонкие гвозди или декоративные булавки
-- **Цвет:** под цвет основы или серебристые
+### Nail Selection
+- **Length:** 15-25 mm
+- **Thickness:** thin nails or decorative pins
+- **Color:** matching base color or silver
 
-### Техника выполнения
-- Натягивайте нить **равномерно** (не слишком туго, не слишком слабо)
-- Проверяйте правильность номеров гвоздей
-- Делайте паузы каждые 300-500 шагов
-- Периодически сверяйтесь с симуляцией
+### Execution Technique
+- Pull thread **evenly** (not too tight, not too loose)
+- Check nail numbers for accuracy
+- Take breaks every 300-500 steps
+- Periodically compare with simulation
 
-### Оптимизация параметров
-Для **быстрого результата** (1-2 часа создания):
+### Parameter Optimization
+For **quick result** (1-2 hours creation):
 ```python
 NUM_NAILS = 150
 NUM_STEPS = 2000
 ```
 
-Для **высокого качества** (4-6 часов создания):
+For **high quality** (4-6 hours creation):
 ```python
 NUM_NAILS = 200
 NUM_STEPS = 4000
 TARGET_SIZE = 1000
 ```
 
-Для **очень детального** (6-10 часов создания):
+For **very detailed** (6-10 hours creation):
 ```python
 NUM_NAILS = 250
 NUM_STEPS = 5000
 TARGET_SIZE = 1200
 ```
 
-## 📄 Лицензия
+## 📄 License
 
-MIT License - свободно используйте для личных и коммерческих проектов.
+MIT License - free to use for personal and commercial projects.
 
-## 🤝 Вклад в проект
+## 🤝 Contributing
 
-Предложения и улучшения приветствуются! 
+Suggestions and improvements are welcome! 
 
-## 📞 Поддержка
+## 📞 Support
 
-При возникновении проблем:
-1. Проверьте FAQ выше
-2. Убедитесь, что все зависимости установлены
-3. Проверьте формат входного изображения (JPG/PNG)
-4. Попробуйте уменьшить параметры для тестирования
+If you encounter problems:
+1. Check the FAQ above
+2. Ensure all dependencies are installed
+3. Check input image format (JPG/PNG)
+4. Try reducing parameters for testing
 
 ---
 
-**Создавайте потрясающие произведения искусства!** 🎨✨
+**Create amazing artworks!** 🎨✨

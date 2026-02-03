@@ -1,282 +1,282 @@
-# 📊 Обзор проекта String Art Generator v2.0
+# 📊 String Art Generator v2.0 Project Overview
 
-## 🎯 Цель проекта
+## 🎯 Project Goal
 
-Профессиональный генератор String Art (Nail Art) для создания художественных работ из нитей и гвоздей на основе любого изображения, оптимизированный для формата A3.
+Professional String Art (Nail Art) generator for creating artistic works from threads and nails based on any image, optimized for A3 format.
 
-## ✨ Ключевые особенности
+## ✨ Key Features
 
-### 🎨 Оптимизация для A3
-- Идеальные размеры для листа A3 (297×420 мм)
-- Рабочий круг диаметром 227 мм
-- 180 оптимально расположенных гвоздей
-- Готовые к печати схемы (300 DPI)
+### 🎨 A3 Optimization
+- Perfect dimensions for A3 sheet (297×420 mm)
+- Working circle diameter of 227 mm
+- 180 optimally positioned nails
+- Print-ready schemes (300 DPI)
 
-### 📍 Профессиональная схема
-- Крупная читаемая нумерация (14pt+)
-- Выделение каждого 10-го гвоздя
-- Направляющие линии каждые 30°
-- Красный маркер начала (гвоздь 0)
-- Физические размеры на схеме
+### 📍 Professional Scheme
+- Large readable numbering (14pt+)
+- Every 10th nail highlighted
+- Guide lines every 30°
+- Red start marker (nail 0)
+- Physical dimensions on scheme
 
-### 📊 Детальные инструкции
-- CSV с полной информацией о каждом шаге
-- Длина сегмента в мм
-- Угол направления
-- Прогресс выполнения
-- Группировка по 10 секциям
-- Расчёт общей длины нити (+20% запас)
+### 📊 Detailed Instructions
+- CSV with complete information about each step
+- Segment length in mm
+- Direction angle
+- Completion progress
+- Grouped into 10 sections
+- Total thread length calculation (+20% safety margin)
 
-### 🖼️ Реалистичная симуляция
-- Высококачественная визуализация
-- Альфа-блендинг для реализма
-- Экспорт в PNG и PDF (A3)
-- Предпросмотр финального результата
+### 🖼️ Realistic Simulation
+- High-quality visualization
+- Alpha-blending for realism
+- Export to PNG and PDF (A3)
+- Final result preview
 
-## 📁 Структура проекта
+## 📁 Project Structure
 
 ```
 art/
-├── string_art.py          # Основной код генератора (863 строки)
-├── requirements.txt       # Зависимости Python
+├── string_art.py          # Main generator code (863 lines)
+├── requirements.txt       # Python dependencies
 │
-├── README.md             # Полная документация (417 строк)
-├── QUICKSTART.md         # Быстрый старт за 5 минут
-├── EXAMPLES.md           # Примеры использования (213 строк)
-├── ARCHITECTURE.md       # Техническая документация (337 строк)
-├── CHECKLIST.md          # Чеклист выполнения требований
-├── PROJECT_SUMMARY.md    # Этот файл - обзор проекта
+├── README.md             # Complete documentation (417 lines)
+├── QUICKSTART.md         # Quick start in 5 minutes
+├── EXAMPLES.md           # Usage examples (213 lines)
+├── ARCHITECTURE.md       # Technical documentation (337 lines)
+├── CHECKLIST.md          # Requirements completion checklist
+├── PROJECT_SUMMARY.md    # This file - project overview
 │
-├── .gitignore            # Git ignore правила
-├── .venv/                # Виртуальное окружение Python
+├── .gitignore            # Git ignore rules
+├── .venv/                # Python virtual environment
 │
-└── [Выходные файлы при генерации]
-    ├── nails_scheme.pdf       # Схема гвоздей A3
-    ├── nails_scheme.png       # Схема гвоздей PNG
-    ├── instructions.csv       # Пошаговые инструкции
-    ├── drawing_simulation.png # Симуляция результата
-    └── drawing_simulation.pdf # Симуляция A3 PDF
+└── [Output files on generation]
+    ├── nails_scheme.pdf       # A3 nail scheme
+    ├── nails_scheme.png       # PNG nail scheme
+    ├── instructions.csv       # Step-by-step instructions
+    ├── drawing_simulation.png # Result simulation
+    └── drawing_simulation.pdf # A3 PDF simulation
 ```
 
-## 🔧 Технологический стек
+## 🔧 Technology Stack
 
-### Языки и инструменты
-- **Python 3.8+** - основной язык
-- **NumPy** - векторные операции и математика
-- **Pillow (PIL)** - обработка изображений
-- **Matplotlib** - генерация PDF/PNG схем
+### Languages and Tools
+- **Python 3.8+** - main language
+- **NumPy** - vector operations and math
+- **Pillow (PIL)** - image processing
+- **Matplotlib** - PDF/PNG scheme generation
 
-### Алгоритмы
-- **Жадный алгоритм** для оптимизации маршрута нити
-- **Алгоритм Брезенхема** для рисования линий
-- **Альфа-блендинг** для реалистичной симуляции
-- **Автоостановка** при достижении оптимума
+### Algorithms
+- **Greedy algorithm** for thread routing optimization
+- **Bresenham's algorithm** for line drawing
+- **Alpha-blending** for realistic simulation
+- **Auto-stop** when reaching optimum
 
-## 📈 Параметры по умолчанию
+## 📈 Default Parameters
 
-### Оптимизированы для A3
+### Optimized for A3
 ```python
-NUM_NAILS = 180                    # Количество гвоздей
-NUM_STEPS = 3500                   # Максимум шагов
-TARGET_SIZE = 800                  # Разрешение обработки
-THREAD_STRENGTH = 0.22             # Интенсивность нити
-CIRCLE_RADIUS_MM = 113.5           # Радиус в мм
-MARGIN_MM = 35                     # Отступ от края
+NUM_NAILS = 180                    # Number of nails
+NUM_STEPS = 3500                   # Maximum steps
+TARGET_SIZE = 800                  # Processing resolution
+THREAD_STRENGTH = 0.22             # Thread intensity
+CIRCLE_RADIUS_MM = 113.5           # Radius in mm
+MARGIN_MM = 35                     # Margin from edge
 ```
 
-### Производительность
-- Время генерации: 2-5 минут (зависит от системы)
-- Память: ~200-500 МБ
-- Сложность: O(NUM_STEPS × NUM_NAILS × TARGET_SIZE)
+### Performance
+- Generation time: 2-5 minutes (system dependent)
+- Memory: ~200-500 MB
+- Complexity: O(NUM_STEPS × NUM_NAILS × TARGET_SIZE)
 
-## 📊 Статистика кода
+## 📊 Code Statistics
 
-| Компонент | Строк кода | Описание |
+| Component | Lines of Code | Description |
 |-----------|------------|----------|
-| string_art.py | 863 | Основной код генератора |
-| README.md | 417 | Полная документация |
-| ARCHITECTURE.md | 337 | Техническая документация |
-| EXAMPLES.md | 213 | Примеры использования |
-| CHECKLIST.md | 199 | Чеклист требований |
-| **Всего** | **2029** | **Общий объём проекта** |
+| string_art.py | 863 | Main generator code |
+| README.md | 417 | Complete documentation |
+| ARCHITECTURE.md | 337 | Technical documentation |
+| EXAMPLES.md | 213 | Usage examples |
+| CHECKLIST.md | 199 | Requirements checklist |
+| **Total** | **2029** | **Total project volume** |
 
-## 🎯 Выполненные требования
+## 🎯 Completed Requirements
 
-1. ✅ **Макет для A3** - полностью оптимизирован
-2. ✅ **Читаемая нумерация** - крупная с выделением
-3. ✅ **CSV инструкции** - с детальной статистикой
-4. ✅ **Реалистичная симуляция** - альфа-блендинг
-5. ✅ **Оптимальные параметры** - выверены для A3
-6. ✅ **Подробная документация** - 5 MD файлов
-7. ✅ **Рефакторинг кода** - type hints, docstrings
+1. ✅ **A3 Layout** - fully optimized
+2. ✅ **Readable numbering** - large with highlighting
+3. ✅ **CSV instructions** - with detailed statistics
+4. ✅ **Realistic simulation** - alpha-blending
+5. ✅ **Optimal parameters** - calibrated for A3
+6. ✅ **Detailed documentation** - 5 MD files
+7. ✅ **Code refactoring** - type hints, docstrings
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
 ```bash
-# Установка
+# Installation
 pip install -r requirements.txt
 
-# Запуск
+# Run
 python string_art.py your_image.png
 
-# Результат (через 2-5 минут)
+# Result (in 2-5 minutes)
 # ✓ nails_scheme.pdf
 # ✓ instructions.csv
 # ✓ drawing_simulation.png
 ```
 
-## 📖 Документация
+## 📖 Documentation
 
-### Для пользователей
-- **QUICKSTART.md** - начните здесь (5 минут)
-- **README.md** - полное руководство
-- **EXAMPLES.md** - примеры настроек
+### For Users
+- **QUICKSTART.md** - start here (5 minutes)
+- **README.md** - complete guide
+- **EXAMPLES.md** - configuration examples
 
-### Для разработчиков
-- **ARCHITECTURE.md** - техническая архитектура
-- **string_art.py** - код с комментариями
-- **CHECKLIST.md** - проверка требований
+### For Developers
+- **ARCHITECTURE.md** - technical architecture
+- **string_art.py** - code with comments
+- **CHECKLIST.md** - requirements check
 
-## 🎨 Примеры использования
+## 🎨 Usage Examples
 
-### Стандартный (по умолчанию)
-- 180 гвоздей
-- 3500 шагов
-- ~4-5 часов создания
-- ~50-100 метров нити
+### Standard (default)
+- 180 nails
+- 3500 steps
+- ~4-5 hours creation
+- ~50-100 meters thread
 
-### Быстрый
-- 150 гвоздей
-- 2000 шагов
-- ~2-3 часа создания
-- ~30-60 метров нити
+### Quick
+- 150 nails
+- 2000 steps
+- ~2-3 hours creation
+- ~30-60 meters thread
 
-### Детальный
-- 200 гвоздей
-- 4500 шагов
-- ~6-8 часов создания
-- ~80-150 метров нити
+### Detailed
+- 200 nails
+- 4500 steps
+- ~6-8 hours creation
+- ~80-150 meters thread
 
-## 🔥 Особенности реализации
+## 🔥 Implementation Features
 
-### Инновации v2.0
-1. **Физические размеры** - автоматический пересчёт px ↔ mm
-2. **Детальная статистика** - длина, углы, прогресс в CSV
-3. **Интеллектуальная нумерация** - адаптивный размер + выделение
-4. **Направляющие линии** - упрощают размещение гвоздей
-5. **Реалистичная симуляция** - альфа-блендинг + бумажный фон
-6. **Type hints** - полная типизация кода
-7. **Comprehensive docs** - 2000+ строк документации
+### v2.0 Innovations
+1. **Physical dimensions** - automatic px ↔ mm conversion
+2. **Detailed statistics** - length, angles, progress in CSV
+3. **Intelligent numbering** - adaptive size + highlighting
+4. **Guide lines** - simplify nail placement
+5. **Realistic simulation** - alpha-blending + paper background
+6. **Type hints** - full code typing
+7. **Comprehensive docs** - 2000+ lines of documentation
 
-### Качество кода
+### Code Quality
 - ✅ PEP 8 compliant
-- ✅ Type hints всюду
-- ✅ Docstrings для всех функций
-- ✅ Модульная архитектура
-- ✅ Читаемые имена
-- ✅ DRY принцип
+- ✅ Type hints everywhere
+- ✅ Docstrings for all functions
+- ✅ Modular architecture
+- ✅ Readable names
+- ✅ DRY principle
 
-## 🎓 Обучающая ценность
+## 🎓 Educational Value
 
-Проект демонстрирует:
-- Алгоритмы компьютерного зрения
-- Жадные алгоритмы оптимизации
-- Обработку изображений
-- Векторную графику
-- Генерацию PDF/PNG
+Project demonstrates:
+- Computer vision algorithms
+- Greedy optimization algorithms
+- Image processing
+- Vector graphics
+- PDF/PNG generation
 - Python best practices
-- Техническую документацию
+- Technical documentation
 
-## 📦 Зависимости
+## 📦 Dependencies
 
 ```
-Pillow >= 9.0.0    # Обработка изображений
-numpy >= 1.23.0     # Математика и массивы
-matplotlib >= 3.5.0 # Визуализация и экспорт
+Pillow >= 9.0.0    # Image processing
+numpy >= 1.23.0     # Math and arrays
+matplotlib >= 3.5.0 # Visualization and export
 ```
 
-## 🌟 Результаты
+## 🌟 Results
 
-### Типичный вывод
+### Typical Output
 ```
 Total steps: 3500
 Total thread length: 669.90m
 Recommended thread: 803.88m (+20% safety margin)
 ```
 
-### Файлы на выходе
-- **nails_scheme.pdf** (~75 KB) - схема высокого качества
-- **nails_scheme.png** (~550 KB) - схема для просмотра
-- **instructions.csv** (~106 KB) - 3500+ строк инструкций
-- **drawing_simulation.png** (~270 KB) - визуализация
-- **drawing_simulation.pdf** (~370 KB) - симуляция для печати
+### Output Files
+- **nails_scheme.pdf** (~75 KB) - high-quality scheme
+- **nails_scheme.png** (~550 KB) - scheme for viewing
+- **instructions.csv** (~106 KB) - 3500+ lines of instructions
+- **drawing_simulation.png** (~270 KB) - visualization
+- **drawing_simulation.pdf** (~370 KB) - simulation for printing
 
-## 🎯 Целевая аудитория
+## 🎯 Target Audience
 
-### Художники
-- Создание уникальных String Art работ
-- Простые инструкции для выполнения
-- Предпросмотр результата
+### Artists
+- Creating unique String Art works
+- Simple execution instructions
+- Result preview
 
-### Дизайнеры
-- Генерация макетов для клиентов
-- Профессиональные схемы
-- Готовые к печати PDF
+### Designers
+- Layout generation for clients
+- Professional schemes
+- Print-ready PDFs
 
-### Программисты
-- Изучение алгоритмов
-- Пример хорошего кода
-- Основа для расширения
+### Programmers
+- Algorithm learning
+- Good code example
+- Foundation for extension
 
-### Преподаватели
-- Демонстрация алгоритмов
-- Практические примеры
-- Визуализация концепций
+### Educators
+- Algorithm demonstration
+- Practical examples
+- Concept visualization
 
-## 📞 Поддержка
+## 📞 Support
 
-### Документация
-- Все вопросы покрыты в README.md
-- FAQ раздел для типичных проблем
-- Примеры для всех сценариев
+### Documentation
+- All questions covered in README.md
+- FAQ section for common problems
+- Examples for all scenarios
 
-### Устранение проблем
-- Детальные сообщения об ошибках
-- Валидация входных данных
-- Рекомендации по оптимизации
+### Troubleshooting
+- Detailed error messages
+- Input data validation
+- Optimization recommendations
 
-## 🏆 Достижения проекта
+## 🏆 Project Achievements
 
-- ✅ Полная реализация всех требований
-- ✅ Профессиональная документация
-- ✅ Production-ready код
-- ✅ Оптимизация для A3
-- ✅ Расширенная функциональность
-- ✅ Отличная производительность
-- ✅ Простота использования
+- ✅ Complete implementation of all requirements
+- ✅ Professional documentation
+- ✅ Production-ready code
+- ✅ A3 optimization
+- ✅ Extended functionality
+- ✅ Excellent performance
+- ✅ Ease of use
 
-## 🔮 Возможные улучшения
+## 🔮 Possible Improvements
 
-### Будущие функции
-- [ ] Многоцветный String Art
-- [ ] Другие формы (квадрат, сердце)
-- [ ] GUI интерфейс
-- [ ] Веб-версия
-- [ ] Пакетная обработка
-- [ ] Видео-симуляция процесса
-- [ ] Экспорт в 3D
+### Future Features
+- [ ] Multi-color String Art
+- [ ] Other shapes (square, heart)
+- [ ] GUI interface
+- [ ] Web version
+- [ ] Batch processing
+- [ ] Video simulation of process
+- [ ] 3D export
 
-### Оптимизации
-- [ ] GPU ускорение
-- [ ] Параллельная обработка
-- [ ] Кеширование результатов
-- [ ] Адаптивные параметры
+### Optimizations
+- [ ] GPU acceleration
+- [ ] Parallel processing
+- [ ] Result caching
+- [ ] Adaptive parameters
 
-## 📄 Лицензия
+## 📄 License
 
-**MIT License** - свободное использование для личных и коммерческих проектов.
+**MIT License** - free to use for personal and commercial projects.
 
-## ✅ Статус проекта
+## ✅ Project Status
 
 **Version:** 2.0  
 **Status:** ✅ Production Ready  
@@ -286,8 +286,8 @@ Recommended thread: 803.88m (+20% safety margin)
 
 ---
 
-**Последнее обновление:** 27 января 2026  
-**Автор:** String Art Generator Team  
-**Репозиторий:** /Users/yehorvo/Programming/art  
+**Last Update:** January 27, 2026  
+**Author:** String Art Generator Team  
+**Repository:** /Users/yehorvo/Programming/art  
 
-🎨 **Создавайте шедевры с String Art Generator!** ✨
+🎨 **Create masterpieces with String Art Generator!** ✨
